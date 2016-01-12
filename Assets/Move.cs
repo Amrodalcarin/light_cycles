@@ -5,6 +5,7 @@ public class Move : MonoBehaviour {
     //Trail
     private List<Vector2> puntos_trail;
     public GameObject col;
+	public GameObject pause;
 
     // Movement keys (customizable in Inspector)
     public KeyCode upKey;
@@ -18,6 +19,7 @@ public class Move : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+		pause.active = false;
         //Trail
         puntos_trail = new List<Vector2>();
         // Initial Velocity
@@ -34,6 +36,20 @@ public class Move : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			if (Time.timeScale == 1)
+			{
+				Time.timeScale = 0;
+				pause.active = true;
+			}
+			else
+			{
+				pause.active = false;
+				Time.timeScale = 1;
+			}
+		};
+
         float desiredAngle;
         // Check for key presses
         if (Input.GetKeyDown(upKey) && last_presed != downKey)
