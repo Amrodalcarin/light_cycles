@@ -68,8 +68,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AI\Actions\Comprobar_muros.cs" />
+    <Compile Include="Assets\AI\Actions\Comprobar_muros_green.cs" />
+    <Compile Include="Assets\AI\Actions\Detectar_muro.cs" />
+    <Compile Include="Assets\AI\Actions\Detectar_muros_green.cs" />
+    <Compile Include="Assets\AI\Actions\Move_down.cs" />
+    <Compile Include="Assets\AI\Actions\Move_down_away.cs" />
+    <Compile Include="Assets\AI\Actions\Move_down_away_green.cs" />
+    <Compile Include="Assets\AI\Actions\Move_left.cs" />
+    <Compile Include="Assets\AI\Actions\Move_left_away.cs" />
+    <Compile Include="Assets\AI\Actions\Move_left_away_green.cs" />
+    <Compile Include="Assets\AI\Actions\Move_right.cs" />
+    <Compile Include="Assets\AI\Actions\Move_right_away.cs" />
+    <Compile Include="Assets\AI\Actions\Move_right_away_green.cs" />
+    <Compile Include="Assets\AI\Actions\Move_up.cs" />
+    <Compile Include="Assets\AI\Actions\Move_up_away.cs" />
+    <Compile Include="Assets\AI\Actions\Move_up_away_green.cs" />
+    <Compile Include="Assets\InicioJuegos.cs" />
     <Compile Include="Assets\Move.cs" />
+    <Compile Include="Assets\Pause_Reset.cs" />
     <Compile Include="Assets\TrailCollider.cs" />
+    <Compile Include="Assets\TrailRendererWith2DCollider.cs" />
+    <Compile Include="Assets\comprobar_muerte.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\RAIN\Editor\ScriptTemplates\BehaviorTreeTemplate.xml" />

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class Move : MonoBehaviour {
     //Trail
     private List<Vector2> puntos_trail;
-    public GameObject col;
+    private List<Vector2> buffer_puntos;
+    int contador_puntos;
 	public GameObject pause;
 
     // Movement keys (customizable in Inspector)
@@ -19,9 +20,11 @@ public class Move : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-		pause.active = false;
+        pause.active = false;
         //Trail
+        contador_puntos = 3;
         puntos_trail = new List<Vector2>();
+        buffer_puntos = new List<Vector2>();
         // Initial Velocity
         GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
         last_presed = upKey;
@@ -40,7 +43,7 @@ public class Move : MonoBehaviour {
 		{
 			if (Time.timeScale == 1)
 			{
-				Time.timeScale = 0;
+				Time.timeScale = (float)0;
 				pause.active = true;
 			}
 			else
@@ -50,7 +53,12 @@ public class Move : MonoBehaviour {
 			}
 		};
 
-        float desiredAngle;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel("MainMenu");
+        }
+
+            float desiredAngle;
         // Check for key presses
         if (Input.GetKeyDown(upKey) && last_presed != downKey)
         {
@@ -82,8 +90,20 @@ public class Move : MonoBehaviour {
         }
     }
     void FixedUpdate() {
-        puntos_trail.Add(transform.position);
-        col.GetComponent<EdgeCollider2D>().points = puntos_trail.ToArray();
+        //if (contador_puntos > 0)
+        //{
+        //    buffer_puntos.Add(transform.position);
+        //    contador_puntos--;
+        //}
+        //else
+        //{
+        //    buffer_puntos.Add(transform.position);
+        //    Vector2 aux;
+        //    aux = buffer_puntos[0];
+        //    buffer_puntos.RemoveAt(0);
+        //    puntos_trail.Add(aux);
+        //    col.GetComponent<EdgeCollider2D>().points = puntos_trail.ToArray();
+        //}
     }
 
 }
