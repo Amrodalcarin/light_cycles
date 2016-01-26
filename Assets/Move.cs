@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Move : MonoBehaviour {
-    //Trail
-    private List<Vector2> puntos_trail;
-    private List<Vector2> buffer_puntos;
-    int contador_puntos;
-	public GameObject pause;
+    public GameObject canvas_gameover;
+    public Text jugador;
 
     // Movement keys (customizable in Inspector)
     public KeyCode upKey;
@@ -20,11 +18,7 @@ public class Move : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        pause.active = false;
-        //Trail
-        contador_puntos = 3;
-        puntos_trail = new List<Vector2>();
-        buffer_puntos = new List<Vector2>();
+        canvas_gameover.SetActive(false);
         // Initial Velocity
         GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
         last_presed = upKey;
@@ -33,30 +27,14 @@ public class Move : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D co)
     {
-        print("Player lost:" + name);
+        Time.timeScale = 0;
         Destroy(gameObject);
+        jugador.text = "Orange";
+        canvas_gameover.SetActive(true);
     }
 
     // Update is called once per frame
     void Update () {
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			if (Time.timeScale == 1)
-			{
-				Time.timeScale = (float)0;
-				pause.active = true;
-			}
-			else
-			{
-				pause.active = false;
-				Time.timeScale = 1;
-			}
-		};
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Application.LoadLevel("MainMenu");
-        }
 
             float desiredAngle;
         // Check for key presses
@@ -88,22 +66,6 @@ public class Move : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0, 0, desiredAngle);
             last_presed = leftKey;
         }
-    }
-    void FixedUpdate() {
-        //if (contador_puntos > 0)
-        //{
-        //    buffer_puntos.Add(transform.position);
-        //    contador_puntos--;
-        //}
-        //else
-        //{
-        //    buffer_puntos.Add(transform.position);
-        //    Vector2 aux;
-        //    aux = buffer_puntos[0];
-        //    buffer_puntos.RemoveAt(0);
-        //    puntos_trail.Add(aux);
-        //    col.GetComponent<EdgeCollider2D>().points = puntos_trail.ToArray();
-        //}
     }
 
 }

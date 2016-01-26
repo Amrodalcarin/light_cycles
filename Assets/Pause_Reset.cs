@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Pause_Reset : MonoBehaviour {
-
-    public GameObject pause;
+    public GameObject canvas;
     // Use this for initialization
     void Start () {
-        pause.active = false;
+        canvas.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -16,18 +16,19 @@ public class Pause_Reset : MonoBehaviour {
             if (Time.timeScale == 1)
             {
                 Time.timeScale = (float)0;
-                pause.active = true;
+                canvas.SetActive(true);
             }
             else
             {
-                pause.active = false;
+                canvas.SetActive(false);
                 Time.timeScale = 1;
             }
         };
+    }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Application.LoadLevel("MainMenu");
-        }
+    public void Reset()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 }
